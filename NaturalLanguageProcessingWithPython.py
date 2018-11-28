@@ -189,6 +189,26 @@ cfd = nltk.ConditionalFreqDist(
     for target in ['america', 'citizen']
     if w.lower().startswith(target))
 cfd.plot()
+
+print("\nKorpusy w innych językach:\n")
+print("\nHiszpański:\n")
+print(nltk.corpus.cess_esp.words())
+print("\nKolejny hiszpański:\n")
+print(nltk.corpus.floresta.words())
+print("\nHinduski:\n")
+print(nltk.corpus.indian.words('hindi.pos'))
+print("\nDeklaracja Praw Człowieka w ponad 300 językach:\n")
+print(nltk.corpus.udhr.fileids())
+print("\nSłowa Deklaracji po jawajsku:\n")
+print(nltk.corpus.udhr.words('Javanese-Latin1')[11:])
+
+print("\nRozkład długości słów w poszczególnych językach w Deklaracji:\n")
+languages = ['Chickasaw', 'English', 'German_Deutsch', 'Greenlandic_Inuktikut', 'Hungarian_Magyar', 'Ibibio_Efik']
+cfd = nltk.ConditionalFreqDist(
+    (lang, len(word))
+    for lang in languages
+    for word in nltk.corpus.udhr.words(lang + '-Latin1'))
+cfd.plot(cumulative=True)
 """
 
 
